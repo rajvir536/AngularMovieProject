@@ -1,5 +1,6 @@
 import { HttpService } from './../http.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -8,12 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private httpService: HttpService) { }
+  movieList: any;
+  userName: any;
+  constructor(private httpService: HttpService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.httpService.getAllMovies().subscribe(data => {
-      console.log(data);
-    });
+    // this.route.paramMap.subscribe((params: ParamMap) => {
+    //   const name = params.get('user');
+    //   this.userName = name;
+    // } );
+
+    this.route.queryParams.subscribe((params) => {
+      const name = params.user;
+      this.userName = name;
+    } );
+
+    this.httpService.getAllMovies().subscribe(data => this.movieList = data);
   }
 
+  onClick(id) {
+    console.log('click logged for ' + this.userName + id);
+    this.httpService.addFavorite(this.userName, id);
+  }
 }

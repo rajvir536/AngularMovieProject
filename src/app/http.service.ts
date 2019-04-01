@@ -30,4 +30,9 @@ export class HttpService {
   getAllMovies() {
     return this.http.get(this.urlMovie);
   }
+
+  addFavorite(user: string, favoriteId: string): Observable<User> {
+    const urlTemp = this.urlUser + user;
+    return this.http.put<User>(urlTemp, user);
+  }
 }

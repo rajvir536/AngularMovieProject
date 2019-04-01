@@ -1,3 +1,20 @@
-<p>
-  home-page works!
-</p>
+<h2>Movie List</h2>
+
+<table border="1px">
+  <tr>
+    <th>S.No.</th>    
+    <th>Name of movie</th>    
+    <th>Overview</th>    
+    <th>Release Date</th>    
+    <th>Ratings</th> 
+    <th>Favorite</th> 
+  </tr>
+  <tr *ngFor="let movie of movieList; index as i">
+    <td>{{i+1}}</td>
+    <td>{{movie.title}}</td>
+    <td>{{movie.overview}}</td>
+    <td>{{movie.release_date}}</td>
+    <td>{{movie.vote_average}}</td>
+    <td (click)="onClick(movie.id)">No</td>
+  </tr>
+</table>

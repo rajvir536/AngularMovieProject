@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
 
   loginSubmit() {
     this.httpService.loginUser(new User(this.userName.value, this.password.value)).subscribe(data => {
-    this.router.navigate(['/home']);
+      console.log(data);
+      this.router.navigate(['/home'], { queryParams: {user: this.userName.value}});
     });
   }
 }
