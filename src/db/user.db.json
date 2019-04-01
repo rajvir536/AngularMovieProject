@@ -1,0 +1,9 @@
+{
+  "users": [
+    {
+      "id": "rajat",
+      "password": "123",
+      "favorites": []
+    }
+  ]
+}
