@@ -11,6 +11,9 @@ export class HomePageComponent implements OnInit {
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
+    this.httpService.getAllMovies().subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
