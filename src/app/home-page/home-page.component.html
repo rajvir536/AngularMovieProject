@@ -15,6 +15,9 @@
     <td>{{movie.overview}}</td>
     <td>{{movie.release_date}}</td>
     <td>{{movie.vote_average}}</td>
-    <td (click)="onClick(movie.id)">No</td>
+    <td (click)="addToFavorites(movie.id)">
+      <div *ngIf="checkFav(movie.id); else  elseBlock">Yes</div>
+      <ng-template #elseBlock>No</ng-template>
+    </td>
   </tr>
 </table>

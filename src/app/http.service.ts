@@ -31,8 +31,8 @@ export class HttpService {
     return this.http.get(this.urlMovie);
   }
 
-  addFavorite(user: string, favoriteId: string): Observable<User> {
-    const urlTemp = this.urlUser + user;
-    return this.http.put<User>(urlTemp, user);
+  addFavorite(userName: string, userDetails: string): Observable<User> {
+    const urlTemp = this.urlUser + userName;
+    return this.http.put<User>(urlTemp, userDetails);
   }
 }

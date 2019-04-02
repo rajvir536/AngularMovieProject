@@ -1,3 +1,4 @@
+import { DataStorageService } from './../data-storage.service';
 import { HttpService } from './../http.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private httpService: HttpService, private router: Router) { }
+  constructor(private fb: FormBuilder, private httpService: HttpService, private router: Router,
+    private dataStorage: DataStorageService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -30,8 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
-    this.httpService.loginUser(new User(this.userName.value, this.password.value)).subscribe(data => {
-      console.log(data);
+    this.httpService.loginUser(new User(this.userName.value, this.password.value)).subscribe(userDetails => {
+      console.log(userDetails);
+      this.dataStorage.data = userDetails;
       this.router.navigate(['/home'], { queryParams: {user: this.userName.value}});
     });
   }
